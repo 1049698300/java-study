@@ -7,12 +7,12 @@ JDK：java开发工具包，是编写java程序所需的开发工具。JDK包含
 
 ###自动装箱(autoboxing)与拆箱(unboxing)
 自动装箱是 Java 编译器在基本数据类型和对应的对象包装类型之间做的一个转化。
-比如：把 int 转化成 Integer，double 转化成 Double等,反之就是自动拆箱。  
+比如：把 int 转化成 Integer，double 转化成 Double等,反之就是自动拆箱。    
+Integer  a=1;//这就是一个自动装箱，如果没有自动装箱的话，需要这样Integer  a=new Integer(1)  
+int b=a;//这就是一个自动拆箱，如果没有自动拆箱的话，需要这样：int b=a.intValue()  
+这样就能看出自动装箱和自动拆箱是简化了基本数据类型和相对应对象的转化步骤  
 [Java中的自动装箱与拆箱](http://droidyue.com/blog/2015/04/07/autoboxing-and-autounboxing-in-java/index.html)
-###自动装箱有什么用
-Integer  a=1;//这就是一个自动装箱，如果没有自动装箱的话，需要这样Integer  a=new Integer(1)
-int b=a;//这就是一个自动拆箱，如果没有自动拆箱的话，需要这样：int b=a.intValue()
-这样就能看出自动装箱和自动拆箱是简化了基本数据类型和相对应对象的转化步骤
+
 ###Java中为什么要为基本类型提供封装类呢？
 一是为了在各种类型间转化，通过各种方法的调用。否则 你无法直接通过变量转化。
 比如，现在int要转为String
