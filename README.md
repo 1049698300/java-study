@@ -92,8 +92,7 @@ String str = new String(“hello”);
 
 ###List,Map,Set
 ![图示](https://github.com/ALLENnan/java-study/blob/master/pic.jpg)   
-由Collection接口派生的两个接口是List和Set；    　
-List是有序的Collection；  　  
+由Collection接口派生的两个接口是List和Set；    
 Vector非常类似ArrayList，但是Vector是同步的；  
 Stack继承自Vector，实现一个后进先出的堆栈，push和pop，还有peek方法得到栈顶的元素   
 Set是一种不包含重复的元素的Collection   
