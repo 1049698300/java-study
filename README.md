@@ -116,3 +116,41 @@ Java中的hashCode方法就是根据一定的规则将与对象相关的信息�
 重写"只能适用于实例方法.不能用于静态方法.对于静态方法,只能隐藏（形式上被重写了，但是不符合的多态的特性），“重写”是用来实现多态性的，只有实例方法是可以实现多态，而静态方法无法实现多态
 
 
+###集合类
+Collection  
+├List 有序，可以有重复元素  
+│├LinkedList  
+│├ArrayList  
+│└Vector  
+│　└Stack  
+└Set 无序，不允许重复  
+Map  
+├Hashtable  
+├HashMap  
+└WeakHashMap  
+
+由Collection接口派生的两个接口是List和Set；  　
+List是有序的Collection；　  
+Vector非常类似ArrayList，但是Vector是同步的；  
+Stack继承自Vector，实现一个后进先出的堆栈，push和pop，还有peek方法得到栈顶的元素   
+Set是一种不包含重复的元素的Collection   
+Map没有继承Collection接口，Map提供key到value的映射，一个Map中不能包含相同的key，每个key只能映射一个 value   
+
+###集合类之Vector和ArrayList
+1，vector是线程同步的，所以它也是线程安全的，而arraylist是线程异步的，是不安全的。如果不考虑到线程的安全因素，一般用arraylist效率比较高。  
+2，如果集合中的元素的数目大于目前集合数组的长度时，vector增长率为目前数组长度的100%,而arraylist增长率为目前数组长度的50%.如过在集合中使用数据量比较大的数据，用vector有一定的优势。  
+3，如果查找一个指定位置的数据，vector和arraylist使用的时间是相同的，都是0(1),这个时候使用vector和arraylist都可以  
+
+###集合类之Hashtable
+
+添加数据使用put(key, value)，取出数据使用get(key)，这两个基本操作的时间开销为常数。   
+Hashtable通过initial capacity和load factor两个参数调整性能。通常缺省的load factor   0.75较好地实现了时间和空间的均衡。增大load factor可以节省空间但相应的查找时间将增大，这会影响像get和put这样的操作。  
+
+###集合类之HashMap和Hashtable  
+HashMap Hashtable区别HashMap是Hashtable的轻量级实现（非线程安全的实现），效率上可能高于Hashtable。他们都完成了Map接口。HashMap允许null值作为key和value，而Hashtable不可以。  
+最大的不同是，Hashtable的方法是Synchronize的，而HashMap不是，在多个线程访问Hashtable时，不需要自己为它的方法实现同步，而HashMap 就必须为之提供外同步(Collections.synchronizedMap)。  
+ 迭代HashMap采用快速失败机制（不是迭代完成后才告诉你出错了），而Hashtable不是。迭代器的快速失败机制会抛出一个并发修改异常 （ConcurrentModificationException） ，应该仅用于检测程序错误。 
+ 
+###HashMap之快速失败机制  
+我们知道java.util.HashMap不是线程安全的，因此如果在使用迭代器的过程中有其他线程修改了map，那么将抛出ConcurrentModificationException，这就是所谓fail-fast策略。这一策略在源码中的实现是通过modCount域，modCount顾名思义就是修改次数，对HashMap内容的修改都将增加这个值，那么在迭代器初始化过程中会将这个值赋给迭代器的expectedModCount。在迭代过程中，判断modCount跟expectedModCount是否相等，如果不相等就表示已经有其他线程修改了Map。modCount声明为volatile，保证线程之间修改的可见性。
+
